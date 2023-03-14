@@ -1,0 +1,200 @@
+<div class="top-line">
+  <div>ავტო/მოტო განბაჟების გამომთვლელი</div>
+  <img
+    src="https://www.rs.ge/Media/Default/Images/Header/CarClearanceHead.png"
+  />
+</div>
+<div class="content">
+  <ul class="breadcrumb">
+    <li class="first">
+      <a href="/"
+        ><img
+          style="height: 13px"
+          src="https://www.rs.ge/Media/Default/Images/Common/home.png"
+      /></a>
+    </li>
+    <li class="last">
+      <a href="/">ავტო/მოტო განბაჟების გამომთვლელი</a>
+    </li>
+  </ul>
+  <div class="calculator">
+    <nav class="navigation">
+      <p>კალკულატორები</p>
+      <ul class="calculators-menu">
+        <li
+          [ngClass]="calculatorsMenu['importTax'] ? 'selected' : ''"
+          (click)="calculatorsMenuClick('importTax')"
+        >
+          <img src="assets\right-angle.svg" />იმპორტის გადასახდელის კალკულატორი
+        </li>
+        <li
+          [ngClass]="calculatorsMenu['carLevy'] ? 'selected' : ''"
+          (click)="calculatorsMenuClick('carLevy')"
+        >
+          <img src="assets\right-angle.svg" />ავტო / მოტო განბაჟების გამომთვლელი
+        </li>
+        <li
+          [ngClass]="calculatorsMenu['service'] ? 'selected' : ''"
+          (click)="calculatorsMenuClick('service')"
+        >
+          <img src="assets\right-angle.svg" />დაქირავებით მუშაობა თუ
+          მომსახურების გაწევა
+        </li>
+      </ul>
+    </nav>
+    <div class="widget">
+      <p>ავტომობილი</p>
+
+      <form (ngSubmit)="submit()">
+        <div class="fields-container">
+          <div class="checkboxes">
+            <label class="checkbox-container"
+              >ჰიბრიდი
+              <input
+                type="checkbox"
+                name="hybrid"
+                [(ngModel)]="model.hybrid"
+                (ngModelChange)="
+                  model.electric = false;
+                  model.engine == 0 ? (model.engine = 1.2) : ''
+                "
+              />
+              <span class="checkmark"> </span>
+            </label>
+            <label class="checkbox-container"
+              >ელექტრო
+              <input
+                type="checkbox"
+                name="electric"
+                [(ngModel)]="model.electric"
+                (ngModelChange)="
+                  model.hybrid = false;
+                  model.electric == true ? (model.engine = 0) : '';
+                  model.electric == false ? (model.engine = 1.2) : ''
+                "
+              />
+              <span class="checkmark"> </span>
+            </label>
+            <label class="checkbox-container"
+              >საჭე მარჯვნივ / გადატანილი
+              <input
+                type="checkbox"
+                name="rightWheelOrMoved"
+                [(ngModel)]="model.rightWheelOrMoved"
+              />
+              <span class="checkmark"> </span>
+            </label>
+          </div>
+          <div class="inputs">
+            <div class="input-container">
+              გამოშვების წელი
+              <div class="custom-select">
+                <div
+                  class="select"
+                  [ngClass]="year > 0 ? 'selected' : ''"
+                  (click)="yearSelectMenuClick()"
+                >
+                  <input
+                    type="number"
+                    name="year"
+                    [(ngModel)]="model.year"
+                    min="1965"
+                    max="2023"
+                    step="1"
+                    autocomplete="off"
+                    placeholder="1965-23"
+                    (input)="yearInput($event)"
+                    [ngClass]="model.year != null ? 'input-changed' : ''"
+                  />
+                  <div
+                    class="select-arrow"
+                    [ngClass]="yearSelectMenu ? 'active' : ''"
+                  >
+                    <img
+                      class="select-arrow-icon"
+                      src="assets\dropdown-arrow.svg"
+                    />
+                  </div>
+                </div>
+                <div class="select-items" *ngIf="yearSelectMenu" #selectItems>
+                  <div
+                    class="select-item"
+                    *ngFor="let y of productionYears"
+                    (click)="selectYear(y)"
+                  >
+                    {{ y }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="!model.electric" class="input-container" id="engine">
+              ძრავის მოცულობა
+              <div class="slider-wrapper">
+                <p>0.1</p>
+                <input
+                  [ngStyle]="getSliderStyle()"
+                  class="slider"
+                  type="range"
+                  min="0.1"
+                  max="6.5"
+                  step="0.1"
+                  name="engine"
+                  [(ngModel)]="model.engine"
+                />
+                <p>6.5</p>
+              </div>
+              <input
+                [ngStyle]="getEngineInputStyle()"
+                id="engine"
+                type="number"
+                min="0.1"
+                max="6.5"
+                step="0.1"
+                name="engine"
+                autocomplete="off"
+                [(ngModel)]="model.engine"
+                (input)="engineInput($event)"
+              />
+            </div>
+          </div>
+        </div>
+        <input class="submit" type="submit" value="გამოთვლა" />
+        <div class="result">
+          <div class="result-header">
+            <p>აქციზი</p>
+            <p>იმპორტის გადასახადი</p>
+            <p>სულ</p>
+          </div>
+          <div *ngIf="responseModel" class="result-content">
+            <p>{{ responseModel.excise }} ₾</p>
+            <p>{{ responseModel.customsTax }} ₾</p>
+            <p id="sum">{{ responseModel.sum }} ₾</p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <p id="info">
+    ⓘ გაითვალისწინეთ, რომ ავტომობილის გაფორმების გაფორმებისას წარმოიშობა
+    მომსახურების შემდეგი საფასურები :
+  </p>
+  <div>
+    <span id="numbering">1.</span>
+    <div>
+      <p>დეკლარირებული ავტომობილის გაფორმების</p>
+      <p>მომსახურება -&nbsp;<span id="currency">150 ₾</span></p>
+    </div>
+  </div>
+  <p>
+    <span id="numbering">2.</span>საბაჟო დეკლარაციის სევსება -&nbsp;<span
+      id="currency"
+      >50 ₾</span
+    >
+  </p>
+  <p>
+    <span id="numbering">3.</span>საექსპერტო შემოწმების აქტი -&nbsp;
+    <span id="currency">30 ₾</span>
+  </p>
+</div>

@@ -1,0 +1,192 @@
+.header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  align-items: center;
+  height: 75px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+  background: #fff;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 16%);
+}
+.menu-icon {
+  grid-column: 1;
+}
+.menu-icon img {
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  margin-left: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.rs-logo {
+  grid-column: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.rs-logo img {
+  height: 75px;
+  cursor: pointer;
+}
+.DP {
+  grid-column: 3;
+  display: flex;
+  align-items: center;
+}
+.DP img {
+  filter: opacity(0.75);
+  float: left;
+  cursor: pointer;
+}
+.DP a {
+  text-decoration: none;
+  width: 100px;
+  margin-left: 10px;
+  color: #5f97af;
+  font-size: 0.8125em;
+  float: left;
+}
+.DP a:hover {
+  text-decoration: underline;
+}
+.search-box {
+  grid-column: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: 0.2s linear;
+}
+.search-box-fullsize {
+  grid-column: 2;
+  background: #f8f8f8;
+  height: 56px;
+  border-radius: 8px;
+  width: 50vw;
+  margin: auto;
+  padding: 0.3em;
+  box-sizing: border-box;
+  transition: 0.2s linear;
+}
+.search-box .search-icon {
+  height: 26px;
+  width: 26px;
+  cursor: pointer;
+  /* transition: 0.1s linear; */
+}
+.search-box input {
+  width: 100%;
+  padding: 0.3em;
+  border: none;
+  background: none;
+  outline: none;
+  color: #626262;
+  background-color: transparent;
+}
+.search-box input::placeholder {
+  padding-left: 25px;
+  color: #cccccc;
+}
+.search-box .close-search-icon {
+  height: 17px;
+  width: 17px;
+  cursor: pointer;
+}
+.change-language {
+  grid-column: 6;
+  display: flex;
+  align-items: center;
+}
+.change-language span {
+  display: flex;
+  border: 1px solid #3cb6d5;
+  border-radius: 4px;
+  padding: 17px 17px 14px 16px;
+  cursor: pointer;
+}
+.login {
+  grid-column: 7;
+  background-color: #31619d;
+  width: 210px;
+  height: 65px;
+  border-radius: 8px 0 0 8px;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.login:hover {
+  background: #1a3f62;
+}
+.login span {
+  margin-left: 16px;
+  color: #ffffff;
+  font-size: 1.1875em;
+  width: 100px;
+  line-height: 1.5em;
+}
+.login span img {
+  display: inline;
+  vertical-align: middle;
+}
+.login:hover span img {
+  scale: 1.2;
+}
+
+.help > div {
+  position: fixed;
+  top: 50%;
+}
+.help > div {
+  border-radius: 8px 0 0 8px;
+  background-color: #30609b;
+  z-index: 1;
+  right: 0;
+  font-size: 22px;
+  color: #fff;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.help #feedback {
+  height: 165px;
+  width: 57px;
+  text-align: center;
+  writing-mode: vertical-lr;
+  padding-left: 18px;
+}
+.help #contact {
+  margin-top: 185px;
+  height: 55px;
+  width: 57px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  line-height: 1.5em;
+  overflow: hidden;
+}
+.help #contact #contact-icon {
+  margin: 0 15px;
+}
+.help #contact #three-dot-icon {
+  display: none;
+  position: absolute;
+  top: 15px;
+  left: 17px;
+}
+.help #feedback:hover {
+  width: 70px;
+  background: #1a3f62;
+}
+.help #contact:hover {
+  width: 200px;
+  background: #1a3f62;
+}
+.help #contact:hover #three-dot-icon {
+  display: block;
+}

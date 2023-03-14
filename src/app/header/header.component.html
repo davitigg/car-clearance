@@ -1,0 +1,68 @@
+<div
+  class="header"
+  [ngStyle]="{ 'grid-template-columns': searchDisplay ? '1fr 5fr 1fr' : '' }"
+>
+  <div class="menu-icon">
+    <img src="assets\menu-icon.svg" />
+  </div>
+  <div class="rs-logo" [ngStyle]="{ display: searchDisplay ? 'none' : '' }">
+    <img
+      class="rs-logo"
+      src="https://www.rs.ge/Media/Default/Images/Header/rs-logo-ge.png"
+    />
+  </div>
+  <div class="DP" [ngStyle]="{ display: searchDisplay ? 'none' : '' }">
+    <img src="https://www.rs.ge/Media/Default/Images/Header/Glasses.svg" />
+    <a href="">ვერსია შშმ პირთათვის</a>
+  </div>
+  <div
+    class="search-box"
+    [ngClass]="searchDisplay ? 'search-box-fullsize' : ''"
+  >
+    <img
+      class="search-icon"
+      (click)="toggleSearch()"
+      src="https://www.rs.ge/Media/Default/Images/Header/Search.svg"
+    />
+    <input
+      [ngStyle]="{ display: searchDisplay ? '' : 'none' }"
+      type="text"
+      placeholder="მოძებნე rs.ge-ზე  "
+      autocomplete="off "
+    />
+    <img
+      [ngStyle]="{ display: searchDisplay ? '' : 'none' }"
+      (click)="closeSearch()"
+      class="close-search-icon"
+      src="https://www.rs.ge/Media/Default/Images/Header/X.svg"
+    />
+  </div>
+  <div
+    class="change-language"
+    [ngStyle]="{ display: searchDisplay ? 'none' : '' }"
+  >
+    <span> ENG </span>
+  </div>
+  <div class="login" [ngStyle]="{ 'grid-column': searchDisplay ? '3' : '' }">
+    <span>
+      სისტემაში შესვლა&nbsp;<img
+        src="https://www.rs.ge/Media/Default/Images/Header/logIn.svg"
+      />
+    </span>
+  </div>
+</div>
+
+<div class="help">
+  <div id="feedback">უკუკავშირი</div>
+  <div id="contact">
+    <img
+      id="contact-icon"
+      src="https://www.rs.ge/Media/Default/Images/FeedBack/needHelp.svg"
+    />
+    <img
+      id="three-dot-icon"
+      src="https://www.rs.ge/Media/Default/Images/FeedBack/threeDot.svg"
+    />
+    გჭირდება დახმარება?
+  </div>
+</div>
